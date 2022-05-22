@@ -132,4 +132,19 @@ public class FinancingTest {
 
 		Assertions.assertTrue(f1.entry() == entry);
 	}
+
+	@Test
+	public void quotaShouldBeValid() {
+		double totalAmount = 100000.0;
+		double income = 2000.0;
+		int months = 80;
+
+		Financing f1 = new Financing(totalAmount, income, months);
+
+		double entry = totalAmount * 0.2;
+		double quota = (totalAmount - entry) / months;
+
+		//Assertions.assertTrue(f1.entry() == entry);
+		Assertions.assertEquals(f1.quota(), quota);
+	}
 }
