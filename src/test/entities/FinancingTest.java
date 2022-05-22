@@ -31,4 +31,31 @@ public class FinancingTest {
 		Assertions.assertEquals(expectedEntry, f1.entry());
 		Assertions.assertTrue(expectedQuota == f1.quota());
 	}
+
+	@Test
+	public void setTotalAmountShouldReturnValidArguments() {
+		double totalAmount = 100000.0;
+		double income = 2000.0;
+		int months = 80;
+		double newtotalAmount = 60000.0;
+		Financing f1 = new Financing(totalAmount, income, months);
+		f1.setTotalAmount(newtotalAmount);
+		Assertions.assertTrue(f1.getTotalAmount() == newtotalAmount);
+	}
+	
+	@Test
+	public void setTotalAmountShouldThrowExceptionWhenGetInvalidArguments() {
+		double totalAmount = 100000.0;
+		double income = 2000.0;
+		int months = 80;
+		
+		Financing f1 = new Financing(totalAmount, income, months);
+		
+		Assertions.assertThrows(IllegalArgumentException.class, () -> {
+			double newtotalAmount = 160000.0;//esse valor é inválido dele lançar uma exceção
+			
+			f1.setTotalAmount(newtotalAmount);
+		});
+	}
+	
 }
